@@ -1,17 +1,15 @@
 
-
+//word bank array
 var words = ["burzum", "emperor", "darkthrone", "venom", "bathory", "gorgoroth", "mayhem", "death", "deicide", "brujeria"]
 var word = new Array();
-
-
 var wordLength;
 var totAttempt;
 
-
-function loadWord()
+//sets initial conditions
+function setCond()
 {
 	document.getElementById(reset());
-	document.getElementById('attempts').innerHTML = "Attempts Left: " + (totAttempt = 6);
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
 	var num = (Math.random() * words.length);
 	var num = parseInt(num);	
 	word = words[num].split("");
@@ -46,8 +44,9 @@ function letter(value)
 		totAttempt--;
 		if (totAttempt == 0)
 		{
-			alert("Game Over!!!! You Lost");
-			disableKeys();
+			alert("You are now a pile of dessicated bones (You Lose!).");
+			setCond();
+			// disableKeys();
 			for (var i = 0; i < word.length; i++)
 			{
 				if (wordLength[i] == null)
@@ -61,9 +60,9 @@ function letter(value)
 	
 	
 	generateGuessDisplay(wordLength);
-	document.getElementById('attempts').innerHTML = "Attempts Left: " + totAttempt;
+	document.getElementById('attempts').innerHTML = "Lives Left: " + totAttempt;
 }
-
+//generates guess display
 function generateGuessDisplay(word){
 	var result="";
 	for(var i = 0; i < word.length; i++){
