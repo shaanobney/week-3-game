@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/favicon.png">
+    <title>Death Metal Hangman</title>
+  </head>
+
+  <body>
+
+  <div class="wrapper">
+    <h1>Death Metal Hangman</h1>
+    <p>Use the alphabet below to answer.</p>
+  </div>
+  
+  <div class="wrapper">
+  <div id="keyboard">
+  <form class="center" method="post" name="keys">
+    <input id="q" class="key" name="Q" onclick="letter('q'); this.disabled=true" type="button" value="Q" />
+    <input id="w" class="key" name="W" onclick="letter('w'); this.disabled=true" type="button" value="W" />
+    <input id="e" class="key" name="E" onclick="letter('e'); this.disabled=true" type="button" value="E" />
+    <input id="r" class="key" name="R" onclick="letter('r'); this.disabled=true" type="button" value="R" />
+    <input id="t" class="key" name="T" onclick="letter('t'); this.disabled=true" type="button" value="T" />
+    <input id="y" class="key" name="Y" onclick="letter('y'); this.disabled=true" type="button" value="Y" />
+    <input id="u" class="key" name="U" onclick="letter('u'); this.disabled=true" type="button" value="U" />
+    <input id="i" class="key" name="I" onclick="letter('i'); this.disabled=true" type="button" value="I" />
+    <input id="o" class="key" name="O" onclick="letter('o'); this.disabled=true" type="button" value="O" />
+    <input id="p" class="key" name="P" onclick="letter('p'); this.disabled=true" type="button" value="P" />
+    <br/>
+    <input id="a" class="key" name="A" onclick="letter('a'); this.disabled=true" type="button" value="A" />
+    <input id="s" class="key" name="S" onclick="letter('s'); this.disabled=true" type="button" value="S" />
+    <input id="d" class="key" name="D" onclick="letter('d'); this.disabled=true" type="button" value="D" />
+    <input id="f" class="key" name="F" onclick="letter('f'); this.disabled=true" type="button" value="F" />
+    <input id="g" class="key" name="G" onclick="letter('g'); this.disabled=true" type="button" value="G" />
+    <input id="h" class="key" name="H" onclick="letter('h'); this.disabled=true" type="button" value="H" />
+    <input id="j" class="key" name="J" onclick="letter('j'); this.disabled=true" type="button" value="J" />
+    <input id="k" class="key" name="K" onclick="letter('k'); this.disabled=true" type="button" value="K" />
+    <input id="l" class="key" name="L" onclick="letter('l'); this.disabled=true" type="button" value="L" />
+    <br/>
+    <input id="z" class="key" name="Z" onclick="letter('z'); this.disabled=true" type="button" value="Z" />
+    <input id="x" class="key" name="X" onclick="letter('x'); this.disabled=true" type="button" value="X" />
+    <input id="c" class="key" name="C" onclick="letter('c'); this.disabled=true" type="button" value="C" />
+    <input id="v" class="key" name="V" onclick="letter('v'); this.disabled=true" type="button" value="V" />
+    <input id="b" class="key" name="B" onclick="letter('b'); this.disabled=true" type="button" value="B" />
+    <input id="n" class="key" name="N" onclick="letter('n'); this.disabled=true" type="button" value="N" />
+    <input id="m" class="key" name="M" onclick="letter('m'); this.disabled=true" type="button" value="M" />
+  </form>
+</div>
+    <!-- <p id="catagoryName"></p> -->
+    <div id="guessedWord">
+      <p id="answer" class="center"></p>
+    </div>
+    <div id="hold">
+    
+    </div>
+  <p id="mylives"></p>
+   <div id="attempts">
+
+  <span id="numberAtt"></span></div>
+  <p id="clue">Are you WEAK? Press the button below to find out!</p>
+
+    <div class="container">
+  <button id="startGame" onclick="loadWord()">Play Again</button>
+    </div>
+  </div>
+
+
+  <script src="assets/javascript/game.js"></script>
+
+    
+    
+    
+  </body>
+</html>
