@@ -1,22 +1,41 @@
 
-//word bank array
-var words = ["burzum", "emperor", "darkthrone", "venom", "bathory", "gorgoroth", "mayhem", "death", "deicide", "brujeria"]
+//WORDBANK
+var words = ["burzum", "emperor", "darkthrone", "venom", "bathory", "hellhammer", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
 var word = new Array();
 var wordLength;
 var totAttempt;
+var audio = new Audio('luna.mp3'); //AUDIO FOR WINS/LOSSES
 
-//sets initial conditions
+//FUNCTIONS
+
+//STARTS NEW ROUND WITH TRACKED SCORES
+function newRound()
+{
+	document.getElementById(reset()); //RESET
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 6);
+	var num = (Math.random() * words.length); //WORD SELECTION.
+	var num = Math.round(num);	//ROUNDING THE RESULT.
+	word = words[num].split(""); //SPLITS
+	wordLength = new Array(word.length);
+	generateGuess(wordLength);
+	document.getElementById("keyboard").reset(); //ANOTHER RESET. THE LAST BUTTON PRESSED KEPT ITS STATE, HAD TO ADD THIS. BUT THIS DIDN'T WORK ON IT'S OWN SO I HAD TO HAVE BOTH.
+}
+
+
+//SETS INITIAL CONDITIONS AT START OF FRESH GAME / RESETS THE GAME VIA RESET BUTTON
 function setCond()
 {
-	document.getElementById(reset());
-	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
-	var num = (Math.random() * words.length);
+	document.getElementById(reset()); //RESET
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 6); //ATTEMPTS
+	document.getElementById('myLives').innerHTML = " ";
+	var num = (Math.random() * words.length); 
 	var num = parseInt(num);	
 	word = words[num].split("");
 	wordLength = new Array(word.length);
-	generateGuessDisplay(wordLength);
+	generateGuess(wordLength);
 }
 
+//MAIN GAME FUNCTION
 function letter(value)
 {
 	var attempt = false;
@@ -31,10 +50,11 @@ function letter(value)
 
 	if (attempt == true)
 	{
-		if (wordLength.join() == word.join() && totAttempt < 6 && totAttempt > 0)
+		if (wordLength.join() == word.join() && totAttempt < 7 && totAttempt > 0)
 		{
-			alert("You Have Vanquished the Weak and Torn the Earth Asunder (You Win!)");
-			disableKeys();
+
+			document.getElementById('myLives').innerHTML = "You Have Vanquished the Weak and Torn the Earth Asunder (You Win!)";
+			newRound();
 		}
 		
 	}
@@ -44,9 +64,10 @@ function letter(value)
 		totAttempt--;
 		if (totAttempt == 0)
 		{
-			alert("You are now a pile of dessicated bones (You Lose!).");
-			setCond();
-			// disableKeys();
+			document.getElementById('myLives').innerHTML = "You have been turned into a dessicated pile of bones (You Lose!)";
+			disableKeys();
+			audio.play();
+			
 			for (var i = 0; i < word.length; i++)
 			{
 				if (wordLength[i] == null)
@@ -59,11 +80,11 @@ function letter(value)
 	
 	
 	
-	generateGuessDisplay(wordLength);
-	document.getElementById('attempts').innerHTML = "Lives Left: " + totAttempt;
+	generateGuess(wordLength);
+	document.getElementById('attempts').innerHTML = "Attempts Left: " + totAttempt;
 }
-//generates guess display
-function generateGuessDisplay(word){
+
+function generateGuess(word){
 	var result="";
 	for(var i = 0; i < word.length; i++){
 	
@@ -78,6 +99,8 @@ function generateGuessDisplay(word){
 	}		
 }
 
+
+//CRAP WORKAROUND SINCE I KEPT GETTING STUCK ON KEY EVENTS
 function disableKeys(){	
 	document.getElementById("q").disabled=true;
 	document.getElementById("w").disabled=true;
