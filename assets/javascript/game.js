@@ -1,24 +1,25 @@
 
 //WORDBANK
-var words = ["burzum", "emperor", "darkthrone", "venom", "bathory", "hellhammer", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
+var words = ["burzum", "emperor", "darkthrone", "immortal", "marduk", "venom", "bathory", "obituary", "dismember", "hellhammer", "suffocation", "entombed", "nile", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
 var word = new Array();
 var wordLength;
 var totAttempt;
 var audio = new Audio('luna.mp3'); //AUDIO FOR WINS/LOSSES
+var audios = new Audio('lose.mp3')
 
 //FUNCTIONS
 
-//STARTS NEW ROUND WITH TRACKED SCORES
+//STARTS NEW ROUND. 
 function newRound()
 {
 	document.getElementById(reset()); //RESET
-	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 6);
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
 	var num = (Math.random() * words.length); //WORD SELECTION.
 	var num = Math.round(num);	//ROUNDING THE RESULT.
 	word = words[num].split(""); //SPLITS
 	wordLength = new Array(word.length);
 	generateGuess(wordLength);
-	document.getElementById("keyboard").reset(); //ANOTHER RESET. THE LAST BUTTON PRESSED KEPT ITS STATE, HAD TO ADD THIS. BUT THIS DIDN'T WORK ON IT'S OWN SO I HAD TO HAVE BOTH.
+	document.getElementById("keyboard").reset(); //ANOTHER RESET.
 }
 
 
@@ -26,7 +27,7 @@ function newRound()
 function setCond()
 {
 	document.getElementById(reset()); //RESET
-	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 6); //ATTEMPTS
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7); //ATTEMPTS
 	document.getElementById('myLives').innerHTML = " ";
 	var num = (Math.random() * words.length); 
 	var num = parseInt(num);	
@@ -50,10 +51,11 @@ function letter(value)
 
 	if (attempt == true)
 	{
-		if (wordLength.join() == word.join() && totAttempt < 7 && totAttempt > 0)
+		if (wordLength.join() == word.join() && totAttempt < 8 && totAttempt > 0)
 		{
 
 			document.getElementById('myLives').innerHTML = "You Have Vanquished the Weak and Torn the Earth Asunder (You Win!)";
+			audio.play();
 			newRound();
 		}
 		
@@ -66,7 +68,7 @@ function letter(value)
 		{
 			document.getElementById('myLives').innerHTML = "You have been turned into a dessicated pile of bones (You Lose!)";
 			disableKeys();
-			audio.play();
+			audios.play();
 			
 			for (var i = 0; i < word.length; i++)
 			{

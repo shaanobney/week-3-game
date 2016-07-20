@@ -13,8 +13,12 @@ body {
   font-size: 18px;
 }
 
+input[type=button] {
+  font-family: fantasy;
+}
+
 .key {
-  font-family: "Copperplate Gothic Light";
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
   width: 30px;
   height: 30px;
   color: red;
@@ -58,7 +62,6 @@ p {
 
 
 #answer {
-  font-family: "Copperplate Gothic Light";
   font-size: xx-large;
   letter-spacing: 0.3em;
   text-align: center;
@@ -93,6 +96,10 @@ p {
   font-size: 1.6em;
 }
 
+#solution {
+  color: white;
+}
+
 .active {
   opacity: 0.4;
   filter: alpha(opacity=40);
@@ -110,6 +117,18 @@ p {
   -moz-transition: all 1s ease-in;
   -moz-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
+}
+
+.left {
+  position: 0 10 10 10;
+  float: left;
+  padding: 10 10 10 10;
+}
+
+.right {
+  position: 0 30 30 30;
+  float: right;
+  padding: 10 10 10 10;
 }
 
 #mylives {
