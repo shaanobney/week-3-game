@@ -1,46 +1,45 @@
+//TRIED TO LEAVE SOME GOOD COMMENTS, LEFT THE OBVIOUS THINGS BLANK.
 
-//WORDBANK
-var words = ["burzum", "emperor", "darkthrone", "immortal", "marduk", "venom", "bathory", "obituary", "dismember", "hellhammer", "suffocation", "entombed", "nile", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
-var word = new Array();
+var wordBank = ["burzum", "emperor", "darkthrone", "immortal", "marduk", "venom", "bathory", "obituary", "dismember", "hellhammer", "suffocation", "entombed", "nile", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
+var word = new Array(); //HOLDS SUBSTRINGS OF LETTERS FROM WORD.
 var wordLength;
 var totAttempt;
 var audio = new Audio('luna.mp3'); //AUDIO FOR WINS/LOSSES
-var audios = new Audio('lose.mp3')
+var audios = new Audio('lose.mp3') //SHOULD HAVED NAMED THIS ADIOS.
 
-//FUNCTIONS
 
-//STARTS NEW ROUND. 
+//STARTS NEW ROUND. HAD TO SCRUB WINS/LOSSES FROM IT DUE TO BEING A CLOWN.
 function newRound()
 {
 	document.getElementById(reset()); //RESET
 	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
-	var num = (Math.random() * words.length); //WORD SELECTION.
+	var num = (Math.random() * wordBank.length); //MATH FOR WORD SELECTION.
 	var num = Math.round(num);	//ROUNDING THE RESULT.
-	word = words[num].split(""); //SPLITS
-	wordLength = new Array(word.length);
+	word = wordBank[num].split(""); //SPLITS WORD INTO ARRAY OF ITS LETTERS.
+	wordLength = new Array(word.length); 
 	generateGuess(wordLength);
-	document.getElementById("keyboard").reset(); //ANOTHER RESET.
+	document.getElementById("keyboard").reset(); //ANOTHER RESET. LAST BUTTON PRESSED WOULD ALWAYS RETURN TO A DISABLED STATE ON NEW ROUND WITHOUT THIS.
 }
 
 
-//SETS INITIAL CONDITIONS AT START OF FRESH GAME / RESETS THE GAME VIA RESET BUTTON
+//SETS INITIAL CONDITIONS AT START OF FRESH GAME / RESETS THE GAME VIA RESET BUTTON. SHOULD BE MUCH DIFFERENT FROM ABOVE FUNCTION.
 function setCond()
 {
-	document.getElementById(reset()); //RESET
-	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7); //ATTEMPTS
+	document.getElementById(reset());
+	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
 	document.getElementById('myLives').innerHTML = " ";
-	var num = (Math.random() * words.length); 
+	var num = (Math.random() * wordBank.length); 
 	var num = parseInt(num);	
-	word = words[num].split("");
+	word = wordBank[num].split("");
 	wordLength = new Array(word.length);
 	generateGuess(wordLength);
 }
 
-//MAIN GAME FUNCTION
+//
 function letter(value)
 {
 	var attempt = false;
-	for (var i = 0; i < words.length; i++)
+	for (var i = 0; i < wordBank.length; i++)
 	{
 		if (value == word[i])
 		{
@@ -102,7 +101,7 @@ function generateGuess(word){
 }
 
 
-//CRAP WORKAROUND SINCE I KEPT GETTING STUCK ON KEY EVENTS
+//INTEGRATED THIS KEYBOARD WHILE I WAS TRYING TO FIGURE OUT KEY LISTENERS, THEN RAN OUT OF TIME AND COULDN'T GET RID OF IT.
 function disableKeys(){	
 	document.getElementById("q").disabled=true;
 	document.getElementById("w").disabled=true;
