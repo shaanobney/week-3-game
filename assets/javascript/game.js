@@ -1,23 +1,22 @@
-//TRIED TO LEAVE SOME GOOD COMMENTS, LEFT THE OBVIOUS THINGS BLANK.
-
 var wordBank = ["burzum", "emperor", "darkthrone", "immortal", "marduk", "venom", "bathory", "obituary", "dismember", "hellhammer", "suffocation", "entombed", "nile", "gorgoroth", "mayhem", "death", "deicide", "brujeria", "carcass", "deafheaven"]
 var word = new Array(); //HOLDS SUBSTRINGS OF LETTERS FROM WORD.
 var wordLength;
 var totAttempt;
-var audio = new Audio('luna.mp3'); //AUDIO FOR WINS/LOSSES
+var audio = new Audio('luna.mp3'); //AUDIO FOR WINS/LOSSES.
 var audios = new Audio('lose.mp3') //SHOULD HAVED NAMED THIS ADIOS.
+
 
 
 //STARTS NEW ROUND. HAD TO SCRUB WINS/LOSSES FROM IT DUE TO BEING A CLOWN.
 function newRound()
 {
-	document.getElementById(reset()); //RESET
+	document.getElementById(enableKeys()); //RESET
 	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
 	var num = (Math.random() * wordBank.length); //MATH FOR WORD SELECTION.
 	var num = Math.round(num);	//ROUNDING THE RESULT.
 	word = wordBank[num].split(""); //SPLITS WORD INTO ARRAY OF ITS LETTERS.
 	wordLength = new Array(word.length); 
-	generateGuess(wordLength);
+	createWord(wordLength);
 	document.getElementById("keyboard").reset(); //ANOTHER RESET. LAST BUTTON PRESSED WOULD ALWAYS RETURN TO A DISABLED STATE ON NEW ROUND WITHOUT THIS.
 }
 
@@ -25,22 +24,20 @@ function newRound()
 //SETS INITIAL CONDITIONS AT START OF FRESH GAME / RESETS THE GAME VIA RESET BUTTON. SHOULD BE MUCH DIFFERENT FROM ABOVE FUNCTION.
 function setCond()
 {
-	document.getElementById(reset());
+	document.getElementById(enableKeys());
 	document.getElementById('attempts').innerHTML = "Lives Left: " + (totAttempt = 7);
 	document.getElementById('myLives').innerHTML = " ";
 	var num = (Math.random() * wordBank.length); 
 	var num = parseInt(num);	
 	word = wordBank[num].split("");
 	wordLength = new Array(word.length);
-	generateGuess(wordLength);
+	createWord(wordLength);
 }
 
 //
-function letter(value)
-{
+function letter(value) {
 	var attempt = false;
-	for (var i = 0; i < wordBank.length; i++)
-	{
+	for (var i = 0; i < wordBank.length; i++) {
 		if (value == word[i])
 		{
 			wordLength[i] = value;
@@ -48,11 +45,8 @@ function letter(value)
 		}
 	}	
 
-	if (attempt == true)
-	{
-		if (wordLength.join() == word.join() && totAttempt < 8 && totAttempt > 0)
-		{
-
+	if (attempt == true) {
+		if (wordLength.join() == word.join() && totAttempt < 8 && totAttempt > 0) {
 			document.getElementById('myLives').innerHTML = "You Have Vanquished the Weak and Torn the Earth Asunder (You Win!)";
 			audio.play();
 			newRound();
@@ -60,19 +54,15 @@ function letter(value)
 		
 	}
 	
-	if (attempt == false)
-	{
+	if (attempt == false) {
 		totAttempt--;
-		if (totAttempt == 0)
-		{
+		if (totAttempt == 0) {
 			document.getElementById('myLives').innerHTML = "You have been turned into a dessicated pile of bones (You Lose!)";
 			disableKeys();
 			audios.play();
 			
-			for (var i = 0; i < word.length; i++)
-			{
-				if (wordLength[i] == null)
-				{
+			for (var i = 0; i < word.length; i++) {
+				if (wordLength[i] == null) {
 					wordLength[i] = word[i];
 				}	
 			}	
@@ -81,19 +71,18 @@ function letter(value)
 	
 	
 	
-	generateGuess(wordLength);
+	createWord(wordLength);
 	document.getElementById('attempts').innerHTML = "Attempts Left: " + totAttempt;
 }
 
-function generateGuess(word){
+function createWord(word) {
 	var result="";
-	for(var i = 0; i < word.length; i++){
+	var solution = result;
+	for(var i = 0; i < word.length; i++) {
 	
-		if(word[i] == null){
+		if(word[i] == null) {
 			result += "_";
-		}
-		
-		else{	
+		} else {	
 			result += word[i];
 		}	
 		document.getElementById("answer").innerHTML=result;
@@ -102,7 +91,7 @@ function generateGuess(word){
 
 
 //INTEGRATED THIS KEYBOARD WHILE I WAS TRYING TO FIGURE OUT KEY LISTENERS, THEN RAN OUT OF TIME AND COULDN'T GET RID OF IT.
-function disableKeys(){	
+function disableKeys() {	
 	document.getElementById("q").disabled=true;
 	document.getElementById("w").disabled=true;
 	document.getElementById("e").disabled=true;
@@ -131,7 +120,7 @@ function disableKeys(){
 	document.getElementById("m").disabled=true;	
 }
 
-function reset(){	
+function enableKeys() {	
 	document.getElementById("q").disabled=false;
 	document.getElementById("w").disabled=false;
 	document.getElementById("e").disabled=false;

@@ -18,10 +18,10 @@
     <img class="left" src="assets/images/church.jpg">
     <img class="right" src="assets/images/church.jpg">
     <h1>Death Metal Hangman</h1>
-    <p>Use the alphabet below to answer</p>
   
   <div class="wrapper">
   <div id="keyboard">
+  <h3>Use the buttons to answer</h3>
   <form id="keyBrd" method="post" name="keys">
     <input id="a" class="key" name="A" onclick="letter('a'); this.disabled=true" type="button" value="A" />
     <input id="b" class="key" name="B" onclick="letter('b'); this.disabled=true" type="button" value="B" />
@@ -54,6 +54,7 @@
     <p id="winLose"></p>
     <div id="guessedWord">
       <p id="answer"></p>
+      <p id="solution"></p>
 <!--       <p id="wins"></p>
       <p id="losses"></p> -->
 
